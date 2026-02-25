@@ -1,0 +1,12 @@
+how to reinstall python by using requiremetns.txt file?
+----------------------
+a. create virtual env 
+  -> python -m vend env 
+b. activate env 
+  -> source env/bin/activate
+c. Install the project
+  -> pip install -r .\requiremetns.txt
+
+install main file for the project 
+django-admin startproject project .
+python manage.py startapp app 
