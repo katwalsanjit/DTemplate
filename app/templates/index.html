@@ -8,16 +8,22 @@ Home Page
   <h2>Hello Django Developer</h2>
 
   <div class="container py-5">
-    <form action="" class="container mx-auto card p-4">
-      <div class="mb-3">
-        <label for="title">Note Title</label>
-        <input type="text" id="text" class="form-control" placeholder="Enter Note Title">
-      </div>
+  
+    <form action="{% url 'save_data' %}" method="post" class="container mx-auto card p-4">
+      {% csrf_token %}
+
+       {% include 'components/show_message.html' %}
 
       <div class="mb-3">
         <label for="title">Note Title</label>
-        <input type="text" id="text" class="form-control" placeholder="Enter Note Title">
+        <input name="title" type="text" id="text" class="form-control" placeholder="Enter Note Title">
       </div>
+
+      <div class="mb-3">
+        <label for="title">Description</label>
+        <textarea rows="5" name="description" id="text" class="form-control" placeholder="Enter Note Title">
+        </textarea>
+        </div>
 
       <div class="mb-3">
         <button style="width: 100;" class="btn btn-primary">
