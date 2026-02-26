@@ -34,4 +34,33 @@ Home Page
     </form>
   </div>
 
+
+  <div class="container">
+    <h1>Note Lists {{ notes|length }}</h1>
+    <div class="row">
+      {% if notes %}
+        {% for note in notes %}
+        <div class="p-2 col-sm-2 col-md-3 col-lg-4">
+          <div class="card">
+            <div class="card-body">
+              <h4>{{ note.title }}</h4>
+              <p>{{ note.description }}</p>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm btn-info">Edit</button>
+              <a href="{% url 'delete_note' id=note.id %}" class="btn btn-sm btn-danger">Delete</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <div class="card mx-auto py-4">
+          <h3 class="text-center">No notes Found</h3>
+        </div>
+      {% endif %}
+    </div>
+    
+
+  </div>
+
 {% endblock %}
