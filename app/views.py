@@ -33,3 +33,26 @@ def deleteNote(req,id):
   messages.success(req, 'Note Deleted')
  
   return redirect("/")
+
+
+def updateNote(req,id):
+  note = Note.objects.get(id=id)
+  if req.method == 'POST':
+    title = req.POST.get("title","")
+    description = req.POST.get("description","")
+    isPublish = req.POST.get("published",True)
+    isPublish = True if isPublish =='on' else False
+    if not title or not description:
+      messages.error(req, "Fill All Details")
+
+    note.title = title
+    note.description = description
+    note.isPublish = isPublish
+    note.save()
+    messages.success(req, "Note Updated Successfully")
+  
+  
+  
+  return render(req,"edit-note.html",context={
+    "note":note
+  })
